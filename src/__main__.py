@@ -3,7 +3,7 @@ if __name__ == "__main__":
     import sys
 
     from src.res import Colors, Meta
-    from src.gui import plotCoordinate
+    from src.gui import plot_coord
 
     run = True
 
@@ -17,12 +17,12 @@ if __name__ == "__main__":
 
     screen.fill(Colors.BLACK)
     screen.blit(world, worldRect)
-    plotCoordinate(screen, Colors.WHITE, 49.2827, -123.1207)    # Vancouver, Canada
-    plotCoordinate(screen, Colors.WHITE, 31.2304, 121.4737)     # Shanghai, China
-    plotCoordinate(screen, Colors.WHITE, -33.8688, 151.2093)    # Sydney, Australia
-    plotCoordinate(screen, Colors.WHITE, -22.9068, -43.1729)    # Rio de Janeiro, Brazil
-    plotCoordinate(screen, Colors.WHITE, -33.9249, 18.4241)     # Cape Town, South Africa
-    plotCoordinate(screen, Colors.WHITE, 51.5074, -0.1278)      # London, England
+    plot_coord(screen, Colors.WHITE, 49.2827, -123.1207)    # Vancouver, Canada
+    plot_coord(screen, Colors.WHITE, 31.2304, 121.4737)     # Shanghai, China
+    plot_coord(screen, Colors.WHITE, -33.8688, 151.2093)    # Sydney, Australia
+    plot_coord(screen, Colors.WHITE, -22.9068, -43.1729)    # Rio de Janeiro, Brazil
+    plot_coord(screen, Colors.WHITE, -33.9249, 18.4241)     # Cape Town, South Africa
+    plot_coord(screen, Colors.WHITE, 51.5074, -0.1278)      # London, England
     pygame.display.flip()
 
     while run:
