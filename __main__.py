@@ -1,6 +1,6 @@
 if __name__ == "__main__":
-    from src.Gui import Gui
     from gps3 import gps3
+    from src.Gui import Gui
 
     # Initialize GUI
     gui = Gui()
