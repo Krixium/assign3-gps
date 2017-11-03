@@ -17,7 +17,7 @@ class Dms:
 
 
 class Gui:
-    WORLD_MAP = "../img/world-1024x512.png"
+    WORLD_MAP = "img/world-1024x512.png"
     IMG_WIDTH = 1024
     IMG_HEIGHT = 512
     CENTER = int(IMG_WIDTH / 2), int(IMG_HEIGHT / 2)
