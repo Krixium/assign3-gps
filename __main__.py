@@ -9,9 +9,9 @@ if __name__ == "__main__":
     # Initialize GUI
     gui = Gui()
 
+    # gpsd stuff
     gps_socket = gps3.GPSDSocket()
     data_stream = gps3.DataStream()
-
     gps_socket.connect()
     gps_socket.watch()
 
@@ -23,6 +23,8 @@ if __name__ == "__main__":
             gui.draw_screen(data_stream)
 
     # Listen for when the user closes the window
+    # This is done poorly and I want to move it into a thread but I can't
+    # We might have to move everything else to another thread instead
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT:
