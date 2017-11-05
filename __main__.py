@@ -1,34 +1,52 @@
 if __name__ == "__main__":
-    from gps3 import gps3
-    from Gui import Gui
-    import pygame as pg
-
+    import pygame
     import sys
     import time
+
+    from gps3 import gps3
+    from Gui import Gui
+    from threading import Thread
+
+    class GpsThread(Thread):
+        def __init__(self, interface):
+            Thread.__init__(self)
+            self.isRunning = True
+            self.gui = interface
+            self.socket = gps3.GPSDSocket()
+            self.stream = gps3.DataStream()
+
+        def run(self):
+            self.socket.connect()
+            self.socket.watch()
+
+            for new_data in self.socket:
+                if not self.isRunning:
+                    break
+                if new_data:
+                    self.stream.unpack(new_data)
+                    self.gui.draw_screen(self.stream)
+                time.sleep(1)
+
+        def is_alive(self):
+            return self.isRunning
+
+        def stop(self):
+            self.isRunning = False
 
     # Initialize GUI
     gui = Gui()
 
-    # gpsd stuff
-    gps_socket = gps3.GPSDSocket()
-    data_stream = gps3.DataStream()
-    gps_socket.connect()
-    gps_socket.watch()
-
-    for new_data in gps_socket:
-        if new_data:
-            data_stream.unpack(new_data)
-
-            # pass data_stream object to gui to handle displaying information
-            gui.draw_screen(data_stream)
+    # Initialize GPS3
+    gps_thread = GpsThread(gui)
+    gps_thread.start()
 
     # Listen for when the user closes the window
-    # This is done poorly and I want to move it into a thread but I can't
-    # We might have to move everything else to another thread instead
-    while True:
-        for event in pg.event.get():
-            if event.type == pg.QUIT:
-                sys.exit()
+    while gps_thread.is_alive():
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                gps_thread.stop()
         time.sleep(1)
+
+    sys.exit(0)
 else:
     print("Please run, do not import")

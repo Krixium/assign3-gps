@@ -400,7 +400,8 @@ class Gui:
     # Returns:      Void.
     #
     # Notes:        This function will parse all necessary information contained in the data stream object and display
-    #               it on the Gui.
+    #               it on the Gui. This function also checks all of the json objects for errors before it passes the
+    #               data along to have it parsed.
     # ------------------------------------------------------------------------------------------------------------------
     def draw_screen(self, data_stream):
         lat = data_stream.TPV["lat"]
