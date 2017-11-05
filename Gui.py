@@ -125,6 +125,7 @@ class Gui:
     # ------------------------------------------------------------------------------------------------------------------
     class Colors:
         WHITE = 255, 255, 255
+        BLACK = 0, 0, 0
 
     # ------------------------------------------------------------------------------------------------------------------
     # Function:     __init__
@@ -276,7 +277,7 @@ class Gui:
     #
     # Date:         Nov 3, 2017
     #
-    # Revisions:    N/A
+    # Revisions:    Nov 5, 2017; Added elevation (Juliana French).
     #
     # Designer:     Benny Wang
     #
@@ -295,6 +296,7 @@ class Gui:
     @staticmethod
     def parse_satellite(satellite):
         prn = "PRN: " + str(satellite["PRN"])
+        elevation = "Elevation: " + str(satellite["el"])
         azimuth = "Azimuth: " + str(satellite["az"])
         snr = "SNR: " + str(satellite["ss"])
         used = "Used: "
@@ -302,7 +304,7 @@ class Gui:
             used += "Y"
         else:
             used += "N"
-        return prn + " " + azimuth + " " + snr + " " + used
+        return prn + " " + elevation + " " + azimuth + " " + snr + " " + used
 
     # ------------------------------------------------------------------------------------------------------------------
     # Function:     plot_location
@@ -398,7 +400,8 @@ class Gui:
     # Returns:      Void.
     #
     # Notes:        This function will parse all necessary information contained in the data stream object and display
-    #               it on the Gui.
+    #               it on the Gui. This function also checks all of the json objects for errors before it passes the
+    #               data along to have it parsed.
     # ------------------------------------------------------------------------------------------------------------------
     def draw_screen(self, data_stream):
         lat = data_stream.TPV["lat"]
