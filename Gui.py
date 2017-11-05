@@ -337,7 +337,8 @@ class Gui:
     #
     # Date:         Nov 3, 2017
     #
-    # Revisions:    N/A
+    # Revisions:    Nov 5, 2017; Juliana French
+    #               Created logic to determine direction and display in label.
     #
     # Designer:     Benny Wang
     #
@@ -354,7 +355,18 @@ class Gui:
     #               location will be drawn under the bottom left corner of the world map.
     # ------------------------------------------------------------------------------------------------------------------
     def print_location(self, lat, lon):
-        loc_label = "lat: " + str(Gui.get_dms(lat)) + "     lon: " + str(Gui.get_dms(lon))
+        loc_label = "lat: " + str(Gui.get_dms(lat))
+        if lat < 0:
+            loc_label += " S"
+        else:
+            loc_label += " N"
+
+        loc_label += "     lon: " + str(Gui.get_dms(lon))
+        if lon < 0:
+            loc_label += " W"
+        else:
+            loc_label += " E"
+
         loc_label = self.font.render(loc_label, 1, Gui.Colors.WHITE)
         self.surface.blit(loc_label, (20, Gui.IMG_HEIGHT))
 
