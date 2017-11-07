@@ -1,3 +1,4 @@
+import numpy as np
 import pygame as pg
 
 
@@ -202,6 +203,10 @@ class Gui:
     #
     #               The tuple returned from this function is relative to an origin (0, 0) which is located in the top
     #               right of the plane where x grows to right and y grows downwards.
+    #               The equations used are:
+    #                   x = (h / 2 / pi)(2^z)(lon + pi)
+    #                   y = (h / 2 / pi)(2^z)(pi - ln[tan(pi / 4 + lat / 2)])
+    #               where h is the height of the map used and z is the amount of zoom.
     # ------------------------------------------------------------------------------------------------------------------
     @staticmethod
     def mercator_projection(lat, lon):
@@ -216,12 +221,6 @@ class Gui:
         b = np.tan(np.pi / 4 + m_lat / 2)
         c = np.pi - np.log(b)
         y = int(a * c)
-
-        # might be needed later
-        # if x < -Meta.WIDTH / 2:
-        #     x += Meta.WIDTH
-        # elif x > Meta.WIDTH / 2:
-        #     x -= Meta.WIDTH
 
         return x, y
 
