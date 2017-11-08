@@ -275,7 +275,8 @@ class Gui:
     #
     # Date:         Nov 3, 2017
     #
-    # Revisions:    Nov 5, 2017; Added elevation (Juliana French).
+    # Revisions:    Nov 5, 2017; Juliana French
+    #               Added elevation.
     #
     # Designer:     Benny Wang
     #
@@ -336,7 +337,9 @@ class Gui:
     # Date:         Nov 3, 2017
     #
     # Revisions:    Nov 5, 2017; Juliana French
-    #               Created logic to determine direction and display in label.
+    #                   Created logic to determine direction and display in label.
+    #               Nov 7, 2017; Juliana French
+    #                   Removed extra spaces; made lat, lon display as absolute value.
     #
     # Designer:     Benny Wang
     #
@@ -353,13 +356,13 @@ class Gui:
     #               location will be drawn under the bottom left corner of the world map.
     # ------------------------------------------------------------------------------------------------------------------
     def print_location(self, lat, lon):
-        loc_label = "lat: " + str(Gui.get_dms(lat))
+        loc_label = "Lat: " + str(Gui.get_dms(np.abs(lat)))
         if lat < 0:
             loc_label += " S"
         else:
             loc_label += " N"
 
-        loc_label += "     lon: " + str(Gui.get_dms(lon))
+        loc_label += " Lon: " + str(Gui.get_dms(np.abs(lon)))
         if lon < 0:
             loc_label += " W"
         else:

@@ -4,17 +4,28 @@ from threading import Thread
 
 
 # ----------------------------------------------------------------------------------------------------------------------
-# Class:        GpsThread
+# Source File:  GpsThread
+#
+# Program:      dcgps
+#
+# Functions:
+#               GpsThread __init__(self, interface)
+#               void run(self)
+#               Boolean is_alive(self)
+#               void stop(self)
 #
 # Date:         Nov 3, 2017
 #
 # Revisions:    N/A
 #
-# Designer:     Juliana French and Michaela Yoon
+# Designer:     Juliana French
+#               Michaela Yoon
 #
-# Programmer:   Juliana French and Michaela Yoon
+# Programmer:   Juliana French
+#               Michaela Yoon
 #
-# Notes:        
+# Notes:
+# Defines a simple thread to continuously gather data from the satellites.
 # ----------------------------------------------------------------------------------------------------------------------
 class GpsThread(Thread):
     # ------------------------------------------------------------------------------------------------------------------
@@ -24,7 +35,7 @@ class GpsThread(Thread):
     #
     # Revisions:    N/A
     #
-    # Designer:     Juliana French and Michaela Yoon
+    # Designer:     Juliana French
     #
     # Programmer:   Juliana French
     #
@@ -49,15 +60,16 @@ class GpsThread(Thread):
     #
     # Revisions:    N/A
     #
-    # Designer:     Juliana French and Michaela Yoon
+    # Designer:     Michaela Yoon
     #
     # Programmer:   Michaela Yoon
     #
     # Interface:    run(self)
     #
-    # Returns:      
+    # Returns:      Void.
     #
-    # Notes:        Monitors the socket and streams to GUI when presented with new data.
+    # Notes:
+    # Monitors the socket and streams to GUI when presented with new data.
     # ------------------------------------------------------------------------------------------------------------------
     def run(self):
         self.socket.connect()
@@ -78,13 +90,13 @@ class GpsThread(Thread):
     #
     # Revisions:    N/A
     #
-    # Designer:     Juliana French and Michaela Yoon
+    # Designer:     Juliana French
     #
     # Programmer:   Juliana French
     #
     # Interface:    is_alive(self)
     #
-    # Returns:      Boolean (True if thread is running)
+    # Returns:      Whether the thread is alive.
     #
     # Notes:        Checks whether thread is running or not.
     # ------------------------------------------------------------------------------------------------------------------
@@ -98,7 +110,7 @@ class GpsThread(Thread):
     #
     # Revisions:    N/A
     #
-    # Designer:     Juliana French and Michaela Yoon
+    # Designer:     Juliana French
     #
     # Programmer:   Juliana French
     #

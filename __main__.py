@@ -1,3 +1,26 @@
+# ---------------------------------------------------------------------------------------------
+# Source File:  __main__.py     An application to display GPS location data.
+#
+# Program:      dcgps
+#
+# Functions:    void __main__(void)
+#
+# Date:         Nov 3, 2017
+#
+# Revisions:    Nov 6, 2017; Michaela Yoon
+#                   Moved GpsThread class to separate file.
+#
+# Designer:     Juliana French
+#               Benny Wang
+#               Michaela Yoon
+#
+# Programmer:   Juliana French
+#               Benny Wang
+#               Michaela Yoon
+#
+# Notes:
+# This program continuously reads and displays data from GPS satellites.
+# ---------------------------------------------------------------------------------------------
 if __name__ == "__main__":
     import pygame
     import sys
