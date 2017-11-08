@@ -3,72 +3,6 @@ import pygame as pg
 
 
 # ------------------------------------------------------------------------------------------------------------------
-# Class:        Dms
-#
-# Date:         Nov 3, 2017
-#
-# Revisions:    N/A
-#
-# Designer:     Benny Wang
-#
-# Programmer:   Benny Wang
-#
-# Notes:        The Dms(degrees-minutes-seconds) class is a data structure that takes in a coordinate of latitude or
-#               longitude and stores it degrees, minute, seconds format
-# ------------------------------------------------------------------------------------------------------------------
-class Dms:
-    # ------------------------------------------------------------------------------------------------------------------
-    # Function:     __init__
-    #
-    # Date:         Nov 3, 2017
-    #
-    # Revisions:    N/A
-    #
-    # Designer:     Benny Wang
-    #
-    # Programmer:   Benny Wang
-    #
-    # Interface:    Dms(coord)
-    #                   coord: The coordinate that will be converted to degrees, minutes, seconds.
-    #
-    # Returns:      A Dms object.
-    #
-    # Notes:        The constructor for Dms. Takes in latitude or longitude in coordinates, converts it to degrees,
-    #               minutes, seconds and stores it.
-    # ------------------------------------------------------------------------------------------------------------------
-    def __init__(self, coord):
-        degrees = np.floor(coord)
-        minutes = np.floor(60 * (coord - degrees))
-        seconds = np.floor(3600 * (coord - degrees) - 60 * minutes)
-
-        self.deg = str(int(degrees))
-        self.min = str(int(minutes))
-        self.sec = str(int(seconds))
-
-    # ------------------------------------------------------------------------------------------------------------------
-    # Function:     __repr__
-    #
-    # Date:         Nov 3, 2017
-    #
-    # Revisions:    N/A
-    #
-    # Designer:     Benny Wang
-    #
-    # Programmer:   Benny Wang
-    #
-    # Interface:    __repr__()
-    #
-    # Returns:      A string representation of the Dms object.
-    #
-    # Notes:        __repr__ is a double underscore function that is executed whenever str() is called on the object.
-    #
-    #               The current implementation will return "##.## deg : ## min : ## sec"
-    # ------------------------------------------------------------------------------------------------------------------
-    def __repr__(self):
-        return self.deg + " deg : " + self.min + " min : " + self.sec + " sec"
-
-
-# ------------------------------------------------------------------------------------------------------------------
 # Class:        Gui
 #
 # Date:         Nov 3, 2017
@@ -126,6 +60,72 @@ class Gui:
     class Colors:
         WHITE = 255, 255, 255
         BLACK = 0, 0, 0
+
+    # ------------------------------------------------------------------------------------------------------------------
+    # Class:        Dms
+    #
+    # Date:         Nov 3, 2017
+    #
+    # Revisions:    N/A
+    #
+    # Designer:     Benny Wang
+    #
+    # Programmer:   Benny Wang
+    #
+    # Notes:        The Dms(degrees-minutes-seconds) class is a data structure that takes in a coordinate of latitude or
+    #               longitude and stores it degrees, minute, seconds format
+    # ------------------------------------------------------------------------------------------------------------------
+    class Dms:
+        # ------------------------------------------------------------------------------------------------------------------
+        # Function:     __init__
+        #
+        # Date:         Nov 3, 2017
+        #
+        # Revisions:    N/A
+        #
+        # Designer:     Benny Wang
+        #
+        # Programmer:   Benny Wang
+        #
+        # Interface:    Dms(coord)
+        #                   coord: The coordinate that will be converted to degrees, minutes, seconds.
+        #
+        # Returns:      A Dms object.
+        #
+        # Notes:        The constructor for Dms. Takes in latitude or longitude in coordinates, converts it to degrees,
+        #               minutes, seconds and stores it.
+        # ------------------------------------------------------------------------------------------------------------------
+        def __init__(self, coord):
+            degrees = np.floor(coord)
+            minutes = np.floor(60 * (coord - degrees))
+            seconds = np.floor(3600 * (coord - degrees) - 60 * minutes)
+
+            self.deg = str(int(degrees))
+            self.min = str(int(minutes))
+            self.sec = str(int(seconds))
+
+        # ------------------------------------------------------------------------------------------------------------------
+        # Function:     __repr__
+        #
+        # Date:         Nov 3, 2017
+        #
+        # Revisions:    N/A
+        #
+        # Designer:     Benny Wang
+        #
+        # Programmer:   Benny Wang
+        #
+        # Interface:    __repr__()
+        #
+        # Returns:      A string representation of the Dms object.
+        #
+        # Notes:        __repr__ is a double underscore function that is executed whenever str() is called on the
+        #               object.
+        #
+        #               The current implementation will return "##.## deg : ## min : ## sec"
+        # ------------------------------------------------------------------------------------------------------------------
+        def __repr__(self):
+            return self.deg + " deg : " + self.min + " min : " + self.sec + " sec"
 
     # ------------------------------------------------------------------------------------------------------------------
     # Function:     __init__
@@ -268,7 +268,7 @@ class Gui:
     # ------------------------------------------------------------------------------------------------------------------
     @staticmethod
     def get_dms(coord):
-        return Dms(coord)
+        return Gui.Dms(coord)
 
     # ------------------------------------------------------------------------------------------------------------------
     # Function:     parse_satellite
