@@ -100,11 +100,11 @@ class Gui:
         #               minutes, seconds and stores it.
         # ------------------------------------------------------------------------------------------------------------------
         def __init__(self, coord):
-            degrees = np.abs(np.floor(coord))
+            degrees = np.floor(coord)
             minutes = np.floor(60 * (coord - degrees))
             seconds = np.floor(3600 * (coord - degrees) - 60 * minutes)
 
-            self.deg = str(int(degrees))
+            self.deg = str(int(np.abs(degrees)))
             self.min = str(int(minutes))
             self.sec = str(int(seconds))
 
