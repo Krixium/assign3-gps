@@ -26,6 +26,10 @@ class Gui:
     ZOOM = 1
     DOT_RADIUS = 5
 
+    LINE_HEIGHT = 15
+    TIME_LOCATION = 20, IMG_HEIGHT
+    COORD_LOCATION = 20, IMG_HEIGHT + LINE_HEIGHT
+
     # ------------------------------------------------------------------------------------------------------------------
     # Class:        Window
     #
@@ -96,7 +100,7 @@ class Gui:
         #               minutes, seconds and stores it.
         # ------------------------------------------------------------------------------------------------------------------
         def __init__(self, coord):
-            degrees = np.floor(coord)
+            degrees = np.abs(np.floor(coord))
             minutes = np.floor(60 * (coord - degrees))
             seconds = np.floor(3600 * (coord - degrees) - 60 * minutes)
 
@@ -366,7 +370,7 @@ class Gui:
             loc_label += " E"
 
         loc_label = self.font.render(loc_label, 1, Gui.Colors.WHITE)
-        self.surface.blit(loc_label, (20, Gui.IMG_HEIGHT))
+        self.surface.blit(loc_label, Gui.COORD_LOCATION)
 
     # ------------------------------------------------------------------------------------------------------------------
     # Function:     print_satellite
@@ -419,15 +423,20 @@ class Gui:
 
         self.paint_background()
 
+        if data_stream.TPV["time"] != "n/a":
+            time_str = Gui.parse_timestamp(data_stream.TPV)
+            time_label = self.font.render(time_str, 1, Gui.Colors.WHITE)
+            self.surface.blit(time_label, Gui.TIME_LOCATION)
+
         if lat != "n/a" and lon != "n/a":
             self.plot_location(lat, lon)
             self.print_location(lat, lon)
 
-        y_pos = Gui.IMG_HEIGHT + 15
+        y_pos = Gui.COORD_LOCATION[1] + Gui.LINE_HEIGHT
         if data_stream.SKY["satellites"] != "n/a":
             for sat in data_stream.SKY["satellites"]:
                 self.print_satellite(sat, (20, y_pos))
-                y_pos += 15
+                y_pos += Gui.LINE_HEIGHT
         else:
             label = self.font.render("No signal", 1, Gui.Colors.WHITE)
             self.surface.blit(label, (20, y_pos))
